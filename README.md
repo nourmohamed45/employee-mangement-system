@@ -1,28 +1,35 @@
 # Employee Management System
 
 ## Description
-The Employee Management System is a TypeScript-based application designed to manage employee records, including their details, roles, and salary information. The system allows for the addition of employees, management of teams, and tracking of employee bonuses.
+A TypeScript-based Employee Management System that demonstrates Object-Oriented Programming principles. This system provides a robust framework for managing employees, departments, and organizational hierarchy using modern TypeScript features.
 
 ## Project Structure
-- `Employee.ts`: Base Employee class
-- `Manager.ts`: Manager class extending Employee
-- `Department.ts`: Department class for managing employees
-- `main.ts`: Main application entry point
+- `Employee.ts`: Base Employee class with core employee attributes and methods
+- `Manager.ts`: Manager class extending Employee with additional team management capabilities
+- `Department.ts`: Department class for organizing and managing groups of employees
+- `tsconfig.json`: TypeScript configuration file
+- `package.json`: Project dependencies and scripts
 
 ## Features
-- Add employees with their details (name, age, position, salary).
-- Calculate bonuses for employees and managers.
-- Manage teams under managers.
-- View total employees in a department.
-- Employee management with basic information
-- Department organization
-- Manager assignments
-- Employee hierarchy
+- Object-Oriented design with inheritance (Manager extends Employee)
+- Strong typing with TypeScript
+- Employee management with comprehensive information:
+  - Personal details (name, age)
+  - Professional information (position, salary)
+  - Performance tracking
+- Department organization and management
+- Team management under managers
+- Salary and bonus calculations
+- Type-safe implementations
 
-## Installation Instructions
+## Prerequisites
+- Node.js (Latest LTS version recommended)
+- npm (Node Package Manager)
+
+## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/employee-management-system.git
+   git clone <repository-url>
    ```
 2. Navigate to the project directory:
    ```bash
@@ -33,15 +40,29 @@ The Employee Management System is a TypeScript-based application designed to man
    npm install
    ```
 
-## Usage
-To run the application, execute the following command:
-```bash
-npm start
-```
-You can then interact with the application through the console or integrate it into a web interface.
+## Development
+The project uses TypeScript v5.3.3 and includes the following development dependencies:
+- TypeScript: ^5.3.3
+- @types/node: ^20.10.5
 
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+## Scripts
+- Build the project:
+  ```bash
+  npm run build
+  ```
+- Run the application:
+  ```bash
+  npm start
+  ```
+
+## Usage
+The system can be used as a foundation for building employee management applications. Import the necessary classes to create and manage employees and departments:
+
+```typescript
+import { Employee } from './Employee';
+import { Manager } from './Manager';
+import { Department } from './Department';
+```
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the ISC License.
