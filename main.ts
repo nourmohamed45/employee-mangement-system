@@ -1,36 +1,45 @@
-import { Employee } from './Employee';
-import { Manager } from './Manager';
-import { Department } from './Department';
+import { Employee } from "./Employee";
+import { Manager } from "./Manager";
+import { Department } from "./Department";
 
-const ahmedEmployee = new Employee("Ahmed", 25, "Software Engineer", 50000);
-const mohamedEmployee = new Employee("Mohamed", 30, "Project Manager", 80000);
-const nourManager = new Manager("Ahmed", 40, "Manager");
-
+// Create departments
 const itDepartment = new Department("IT");
+const hrDepartment = new Department("HR");
 
+// Create a manager
+const techManager = new Manager("John Doe", 35, 80000);
+itDepartment.addEmployee(techManager);
 
-// Employee Implementation 
+// Create employees
+const employee1 = new Employee("Alice Smith", 28, "Software Developer", 60000);
+const employee2 = new Employee("Bob Johnson", 32, "System Admin", 55000);
+const employee3 = new Employee("Carol Williams", 30, "HR Specialist", 50000);
 
-console.log(`Employees Count: ${Employee.getEmployeeCount()}`);
+// Add employees to departments
+itDepartment.addEmployee(employee1);
+itDepartment.addEmployee(employee2);
+hrDepartment.addEmployee(employee3);
 
-console.log(ahmedEmployee.getEmployeeDetails());
-console.log(mohamedEmployee.calculateBonus());
+// Add team members to manager
+techManager.addTeamMember(employee1);
+techManager.addTeamMember(employee2);
 
+// Example usage
+console.log("\n--- Department Information ---");
+console.log(`IT Department Employees: ${itDepartment.getEmployeeCount()}`);
+console.log(`HR Department Employees: ${hrDepartment.getEmployeeCount()}`);
 
-// Manager Implementation
+console.log("\n--- Manager Information ---");
+console.log("Tech Manager Details:", techManager.getEmployeeDetails(true));
+console.log(`Tech Manager's Team Size: ${techManager.getTeamSize()}`);
+console.log(`Tech Manager's Bonus: $${techManager.calculateBonus()}`);
 
-nourManager.setSalary(10000);
+console.log("\n--- Employee Information ---");
+console.log("Employee Details:", employee1.getEmployeeDetails(false));
+console.log(`Employee Bonus: $${employee1.calculateBonus()}`);
 
-console.log(`The bonus for the manager is: ${nourManager.calculateBonus()}`);
-
-nourManager.addTeamMember(ahmedEmployee);
-
-
-// Department Implementation
-
-itDepartment.addEmployee(ahmedEmployee);
-itDepartment.addEmployee(mohamedEmployee);
-
-console.log(itDepartment.viewEmployees());
-
-console.log(`Number of employees in IT: ${itDepartment.getTotalEmployeesInDepartment()}`);
+console.log("\n--- Total Company Statistics ---");
+console.log(`Total Employees: ${Employee.getEmployeeCount()}`);
+console.log(
+  `Total Employees in IT: ${Department.getTotalEmployeesInDepartment("HR")}`
+);

@@ -1,37 +1,54 @@
 import { Employee } from "./Employee";
 
-// Department class
-
 export class Department {
-    // ================== Properties ==================
-    protected name: string;
-    employees: Employee[] | undefined = [];
-    
-    // ================== Constructor ==================
-    constructor(name: string, employees?: Employee[] | undefined) {
-        this.name = name;
-        this.employees = employees;
-    }
+  private readonly _name: string;
+  private _employees: Employee[] = [];
+  private static departments: Department[] = [];
 
-    // ================== Methods ==================
-    // Add employee
-    addEmployee(employee: Employee) {
-        if (this.employees === null || this.employees === undefined) {
-            this.employees = [];
-        }
-        this.employees.push(employee);
-    }
+  constructor(name: string) {
+    this._name = name;
+    Department.departments.push(this);
+  }
 
-    // View employees
-    viewEmployees() {
-        return this.employees;
+  // Add Employee to department
+  public addEmployee(employee: Employee): void {
+    if (this._employees.includes(employee)) {
+      throw new Error("Employee already exists.");
     }
+    this._employees.push(employee);
+  }
 
-    // Get total employees in department
-    getTotalEmployeesInDepartment() {
-        if (this.employees === null || this.employees === undefined) {
-            return 0;
-        }
-        return this.employees.length;
+  // Remove Employee from department
+  public removeEmployee(employeeId: number): void {
+    this._employees = this._employees.filter(
+      (emp) => emp.getId() !== employeeId
+    );
+  }
+
+  // find a specific employee in the department
+  public findEmployee(id: number): Employee | undefined;
+  public findEmployee(name: string): Employee | undefined;
+  public findEmployee(search: number | string): Employee | undefined {
+    if (typeof search === "number") {
+      return this._employees.find((emp) => emp.getId() === search);
+    } else if (typeof search === "string") {
+      return this._employees.find((emp) => emp.getName() === search);
     }
+  }
+  public getEmployeeCount(): number {
+    return this._employees.length;
+  }
+
+
+  // get employees count in the department
+  public static getTotalEmployeesInDepartment(departmentName: string): number {
+    const department = Department.departments.find(dep => dep._name === departmentName);
+    return department ? department.getEmployeeCount() : 0;
+  }
+
+
+//   get all Departments
+  public static getAllDepartments(): Department[] {
+    return [...Department.departments];
+  }
 }
